@@ -85,6 +85,8 @@ $ npm run knex seed:run
   - everything else should be the same as development
 * set a ternary in `db/knex.js`
   - `const env = process.env.NODE_ENV || 'development';`
+* if you've done user authorization/authentication/registration... add this to your server file (app.js, server.js, etc.): app.enable('trust proxy');
+if you don't add it, heroku won't let you sign in or register for a new acct on your site
 
 $ heroku create [app name]
 $ heroku apps:rename [new name] *to rename:*
@@ -99,3 +101,9 @@ $ heroku addons:create heroku-postgresql
 $ heroku run bash
   *opens up a console on heroku server for your app*
 * run migrations and seed your db as you would locally
+
+------ When you need to push up new changes -------- 
+  git push heroku master
+  heroku run bash
+    *** run migrations and seeds
+  heroku config:set SESSION_SECRET=6452aa4b0fd8c6afa8f9f9a5cb67803eefb58326ebe5cf9cdd67911bcc7731b4410a1a13a1e03f0a28cf6c289acb703719be8284da21fece658f5aceb4ab61d8
