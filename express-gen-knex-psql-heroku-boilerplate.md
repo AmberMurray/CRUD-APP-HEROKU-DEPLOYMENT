@@ -1,15 +1,94 @@
-*** from project root directory ****
+*** Start in project root directory ****
 
-# express and knex
+# Without Express Generator:
+- npm init -y
+- npm install --save express body-parser pg knex
+- npm install --save-dev morgan nodemon
+- touch app.js knexfile.js .gitignore
+- Add node_modules/ to the .gitignore
+- Add connection information to the knexfile.js
+- Require necessary packages into app.js and write code to get your server started
 
-$ express --hbs --git
-$ npm install *installs boilerplate dependencies*
-$ npm install --save pg knex method-override
-$ npm install --save-dev nodemon  
-  * add nodemon start script in package.json
-$ git init
-$ touch knexfile.js  
-  * setup knexfile.js config
+# With Express Generator:
+- `npm install -g express-generator` (this is a global install)
+* Go to a new empty folder
+- `express --hbs --git`
+- npm install` *installs boilerplate dependencies*
+- cd into the folder:
+* `git init`
+* `git commit -m "initial commit"`
+* `touch knexfile.js`
+* setup knexfile.js config
+  ```
+  const path = require('path')
+
+  module.exports = {
+    development: {
+      client: 'pg',
+      connection: 'postgres://localhost/cookies_crud',
+      migrations: {
+        directory: path.join(__dirname, 'db', 'migrations')
+      },
+      seeds: {
+        directory: path.join(__dirname, 'db', 'seeds')
+      }
+    },
+    production: {
+      client: 'pg',
+      connection: process.env.DATABASE_URL,
+      migrations: {
+        directory: path.join(__dirname, 'db', 'migrations')
+      },
+      seeds: {
+        directory: path.join(__dirname, 'db', 'seeds')
+      }
+    }
+  }
+```
+- `npm install --save pg knex method-override body-parser cookie-parser hbs` (this may resinstall stuff that's already there - FYI)
+- `npm install --save-dev nodemon morgan` 
+- package.json: add 
+* dev script with nodemon
+* knex script for knex
+* start script (with or without nodemon, this step is necessary for heroku deployment) 
+
+# Databaase
+- Create a database folder and a connection file
+   `mkdir db && touch db/connection.js` (connection.js is aka: knex.js)
+* setup knex.js config
+  ```
+  const env = process.env.NODE_ENV || 'development';
+  const config = require('../knexfile.js')[env];
+  const knex = require('knex')(config);
+
+  module.exports = knex;
+  ```
+- Require the knex connection wherever you have routing
+   `var knex = require('../db/connection')`
+- Create your database on the command line
+   `createdb [your_db_name]`
+- Create your tables with migrations
+   `npm run knex migrate:make [your_table_name]`
+   ```
+   'use strict'
+
+  exports.up = function(knex) {
+  return knex.schema.createTable('messages', (table) => {
+    table.increments()
+    table.string('name', 255).notNullable()
+    table.string('message', 255).notNullable()
+    table.timestamps(true, true)
+  })
+}
+
+exports.down = function(knex) {
+  return knex.schema.dropTable('messages')
+}
+```
+- Run the table - npm run knex migrate:latest
+- Make seed: npm run knex seed:make 1_snack_seed_data
+
+* setup knexfile.js config
   ```
   const path = require('path');
 
