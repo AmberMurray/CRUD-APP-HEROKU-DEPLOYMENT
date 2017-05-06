@@ -1,4 +1,4 @@
-*** Start in project root directory ****
+## Start in project root directory
 
 # Without Express Generator:
 - npm init -y
@@ -11,14 +11,12 @@
 
 # With Express Generator:
 - `npm install -g express-generator` (this is a global install)
-- Go to a new empty folder
 - `express --hbs --git`
-- `npm install` *installs boilerplate dependencies*
-- cd into the folder:
-- `git init`
+- `npm install` (installs boilerplate dependencies)
+- `git init` (establish your repo... make sure to do it on github, as well)
 - `git commit -m "initial commit"`
-- `touch knexfile.js`
-- setup knexfile.js config
+- Create knexfile.js: `touch knexfile.js`
+- Set up knexfile.js config
 ```
   const path = require('path')
 
@@ -64,12 +62,13 @@
 
   module.exports = connection; (the name here has to be the name of the file - connection.js, knex.js...)
 ```
+
 - Require the knex connection wherever you have routing
    `var knex = require('../db/connection')`
 - Create your database on the command line
    `createdb [your_db_name]`
 - Create your tables with migrations: `npm run knex migrate:make [your_table_name]`
-   ```
+```
    'use strict'
 
   exports.up = function(knex) {
@@ -85,6 +84,7 @@ exports.down = function(knex) {
   return knex.schema.dropTable('messages')
 }
 ```
+
 - Run the table: `npm run knex migrate:latest`
 - Make seeds: `npm run knex seed:make [1_your_seed_data_name]`
 ```
@@ -114,31 +114,36 @@ exports.seed = function(knex) {
   })
 }
 ```
+
 - Run the seeds: `npm run knex seed:run`
 
+# To make changes to tables
+- `npm run knex migrate:rollback`
+  * run this command as many times as needed to go back to where things were correct/good
+- Once things are good: `npm run knex migrate:latest`
 
-# knex migrations
-
-$ npm run knex migrate:make [table name]
-  * edit migration file to create table
-$ npm run knex migrate:latest
-  *this creates the table in the database*
-$ npm run knex seed:make 1_[table name]
-  * edit the seed file to insert data, make sure to delete the data before inserting data
-$ npm run knex seed:run
-  *seeds the table with your data*
+# To make changes to seeds
+- Make whatever changes you want in the seed file(s) & then run: `npm run knex seed:run`
 
 
-# setting routes
+# Setting up views
+- Make the views files: layout.hbs, index.hbs, show.hbs, edit.hbs, new.hbs
+- layout.hbs:  
+  * Add bootstrap (or the framework of your choice): 
+    CDN: `<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">`
+  * List your css stylesheet after the CDN link so you can override bootstrap
+    `<link rel='stylesheet' href='/css/main.css' />` (no need to list public folder)
+- Use {{things in here}} to dynamically generate data
 
-* set route with a method and attach a named function
-* code function to return a simple message
+# Setting up the routes
+- Set route with a method (get, put, delete) and attach a named function
+- Code function to return a simple message
+  * test
+- Render the route (pass in a template and object)
+- OR redirect (pass in the path for the page you want to show)
+- Hard-code variables in function to pass through to template
   - test
-* build html template to render and have function render that template
-  - test
-* hard-code variables in function to pass through to template
-  - test
-* refactor function to include logic and dynamic variables
+- Refactor function to include logic and dynamic variables
   - test
 
 
