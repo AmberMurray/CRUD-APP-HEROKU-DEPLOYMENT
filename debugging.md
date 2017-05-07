@@ -14,4 +14,5 @@ Things to try when it's all going wrong
 - move on to something else if you can and build that, come back to the issue
 - to see what changes you've made in your repo: git diff
 - cmd + shift + f in atom will search whole project
+- see if there are multiple node servers running - and kill them
 - the bug does not mean you suck (you suck because you suck, the bug is just a code thing).. jk - you don't suck
