@@ -51,7 +51,7 @@
   * knex script for knex
   * start script (with or without nodemon, this step is necessary for heroku deployment) 
 
-# Databaase
+# Database
 - Create a database folder and a connection file
    `mkdir db && touch db/connection.js` (connection.js is aka: knex.js)
 - Set up connection.js config
@@ -130,13 +130,14 @@ exports.seed = function(knex) {
 - Make the views files: layout.hbs, index.hbs, show.hbs, edit.hbs, new.hbs
 - layout.hbs:  
   * Add bootstrap (or the framework of your choice): 
-    CDN: `<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">`
+    * CDN: 
+      * `<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">`
   * List your css stylesheet after the CDN link so you can override bootstrap
-    `<link rel='stylesheet' href='/css/main.css' />` (no need to list public folder)
+    * `<link rel='stylesheet' href='/css/main.css' />` (no need to list public folder)
 - Use {{things in here}} to dynamically generate data
 
 # Setting up the routes
-- Set route with a method (get, put, delete) and attach a named function
+- Set route with a method (get, put, post, delete) and attach a named function
 - Code function to return a simple message
   * test
 - Render the route (pass in a template and object)
@@ -149,30 +150,39 @@ exports.seed = function(knex) {
 
 # HEROKU deployment
 
-* add a production key to `knexfile.js`
-  - set connection: `process.env.DATABASE_URL`
-  - everything else should be the same as development
-* set a ternary in `db/knex.js`
-  - `const env = process.env.NODE_ENV || 'development';`
-* if you've done user authorization/authentication/registration... add this to your server file (app.js, server.js, etc.): app.enable('trust proxy');
-if you don't add it, heroku won't let you sign in or register for a new acct on your site
+- If you haven't already:
+  * add a production key to knexfile.js
+    - set connection: `process.env.DATABASE_URL`
+  * everything else should be the same as development
+  * set a ternary in db/knex.js
+    - `const env = process.env.NODE_ENV || 'development';`
+    
+- If you've done user authorization/authentication/registration:
+  * add this to your server file (app.js, server.js, etc.): `app.enable('trust proxy')`
+    * if you don't add it, heroku won't let you sign in or register for a new acct on your site (your app won't work)
+  * `heroku config:set`
+    - `SESSION_SECRET=[your session secrect code here from your .env file]`
 
-$ heroku create [app name]
-$ heroku apps:rename [new name] *to rename:*
-$ git commit -m 'prep for deployment' *check git status and commit any changes*
-$ git push heroku master
+- From the command line:
+ * git status, git add -A, git commit, git push origin master
+ * `heroku create [app name]` (you can also not name it and let Heroku give you a wacky name)
+ * `heroku addons:create heroku-postgresql`
+    - creates a postgres server on heroku (needed if you have a db to upload)
+ * `heroku apps:rename [new name]` (to rename)
+ * `git commit -m 'prep for deployment'`
+ * `git push heroku master`
+ * `heroku run bash`
+   - opens up a console on heroku server for your app
+      - run migrations and seed your db as you would locally
+      - type exit to get out of heroku console
+ * `heroku config` (to check configuration)
+ * `heroku open`
+ * `heroku logs -t` (for finding errors)
 
-$ heroku open
-$ heroku logs *for finding errors*
-$ heroku config
-$ heroku addons:create heroku-postgresql
-  *creates a postgres server on heroku*
-$ heroku run bash
-  *opens up a console on heroku server for your app*
-* run migrations and seed your db as you would locally
+- When you need to push up new changes:
+  * `git push heroku master`
+  * `heroku run bash`
+    - run migrations and seeds so changes are reflected
 
------- When you need to push up new changes -------- 
-  git push heroku master
-  heroku run bash
-    *** run migrations and seeds
-  heroku config:set SESSION_SECRET=6452aa4b0fd8c6afa8f9f9a5cb67803eefb58326ebe5cf9cdd67911bcc7731b4410a1a13a1e03f0a28cf6c289acb703719be8284da21fece658f5aceb4ab61d8
+# GOOD LUCK - HAPPY CODING!
+
