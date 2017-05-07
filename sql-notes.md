@@ -8,8 +8,8 @@
 - Create table:
   * `CREATE TABLE [your_table_name] (col_name data type, col_name data type,...);`
 
-    | Data Types  |   |
-    |---|---|---|---|---|
+    |Data Types|   |
+    |---|---|
     |Serial |auto generates id numbers  |
     |Text |has a large area for text  |
     |varchar |has a default limit of 255 characters |
