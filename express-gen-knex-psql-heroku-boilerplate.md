@@ -158,26 +158,26 @@ exports.seed = function(knex) {
     - `const env = process.env.NODE_ENV || 'development';`
     
 - If you've done user authorization/authentication/registration:
- * add this to your server file (app.js, server.js, etc.): `app.enable('trust proxy')`
-   * if you don't add it, heroku won't let you sign in or register for a new acct on your site (your app won't work)
- * `heroku config:set`
-   - `SESSION_SECRET=[your session secrect code here from your .env file]`
+  * add this to your server file (app.js, server.js, etc.): `app.enable('trust proxy')`
+    * if you don't add it, heroku won't let you sign in or register for a new acct on your site (your app won't work)
+  * `heroku config:set`
+    - `SESSION_SECRET=[your session secrect code here from your .env file]`
 
 - From the command line:
- * git status, git add -A, git commit, git push origin master
- * `heroku create [app name]` (you can also not name it and let Heroku give you a wacky name)
- * `heroku addons:create heroku-postgresql`
+  * git status, git add -A, git commit, git push origin master
+  * `heroku create [app name]` (you can also not name it and let Heroku give you a wacky name)
+  * `heroku addons:create heroku-postgresql`
     - creates a postgres server on heroku (needed if you have a db to upload)
- * `heroku apps:rename [new name]` (to rename)
- * `git commit -m 'prep for deployment'`
- * `git push heroku master`
- * `heroku run bash`
-   - opens up a console on heroku server for your app
+  * `heroku apps:rename [new name]` (to rename)
+  * `git commit -m 'prep for deployment'`
+  * `git push heroku master`
+  * `heroku run bash`
+    - opens up a console on heroku server for your app
       - run migrations and seed your db as you would locally
       - type exit to get out of heroku console
- * `heroku config` (to check configuration)
- * `heroku open`
- * `heroku logs -t` (for finding errors)
+  * `heroku config` (to check configuration)
+  * `heroku open`
+  * `heroku logs -t` (for finding errors)
 
 - When you need to push up new changes:
   * `git push heroku master`
