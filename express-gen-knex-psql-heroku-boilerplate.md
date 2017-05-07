@@ -158,10 +158,10 @@ exports.seed = function(knex) {
   - `const env = process.env.NODE_ENV || 'development';`
     
 - If you've done user authorization/authentication/registration:
-  * add this to your server file (app.js, server.js, etc.): `app.enable('trust proxy')`
-    * if you don't add it, heroku won't let you sign in or register for a new acct on your site (your app won't work)
-  * `heroku config:set`
-    - `SESSION_SECRET=[your session secrect code here from your .env file]`
+ * add this to your server file (app.js, server.js, etc.): `app.enable('trust proxy')`
+   * if you don't add it, heroku won't let you sign in or register for a new acct on your site (your app won't work)
+ * `heroku config:set`
+   - `SESSION_SECRET=[your session secrect code here from your .env file]`
 
 - From the command line:
  * git status, git add -A, git commit, git push origin master
