@@ -1,5 +1,5 @@
 # PSQL
-Make sure all commands in the postgres shell end with a semi-colon 🦄
+Make sure all commands in the postgres shell end with a semi-colon 🦄  
 Be intentional with your data type  
 
 Table naming convention:
