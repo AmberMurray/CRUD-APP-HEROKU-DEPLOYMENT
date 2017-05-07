@@ -28,7 +28,7 @@
   * `deletedb [your_db_name]` (this is from outside psql, just at the CLI)
   * `DROP DATABASE [your_db_name];`
 
-*****************************************************************************
+* * *
 SOME COMMANDS  
 
 \l+                   list all dbs, + = more detail
