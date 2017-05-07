@@ -46,7 +46,7 @@
 
 - `npm install --save pg knex method-override body-parser cookie-parser hbs` (this may resinstall stuff that's already there - FYI)
 - `npm install --save-dev nodemon morgan` 
-- package.json: add 
+- package.json add: 
   * dev script with nodemon
   * knex script for knex
   * start script (with or without nodemon, this step is necessary for heroku deployment) 
@@ -158,7 +158,7 @@ exports.seed = function(knex) {
     |Destroy |delete a resource | delete/resources/:id |
     | | |
     |Create |get the form to add new | get/resources/new |
-    |UPdate |get the from to edit | get/resources/:id/edit |  
+    |Update |get the from to edit | get/resources/:id/edit |  
     
 
 # HEROKU deployment
