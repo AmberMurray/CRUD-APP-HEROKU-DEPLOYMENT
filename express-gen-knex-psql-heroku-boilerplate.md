@@ -147,17 +147,18 @@ exports.seed = function(knex) {
 - Refactor function to include logic and dynamic variables
   - test
   
-    |Type | URL Path |
-    |---|---|
-    |get all | get/ |
-    |get all by resource | get/resources |
-    |get one resource | get/resource/:id |
-    |update one resource | put/resource/:id |
-    |create a new resource | post/resources |
-    |delete a resource | delete/resources/:id |
+    |English |Type | URL Path |
+    |---|---|---|
+    |Index |get all | get/ |
+    |Index (all resources) |get all by resource | get/resources |
+    |Show (one resource) |get one resource | get/resources/:id |
+    |Update |update one entire resource | put/resources/:id |
+    |Updage |update part of one resource | patch/resources/:id |
+    |Create |create a new resource | post/resources |
+    |Destroy |delete a resource | delete/resources/:id |
     | | |
-    |get the form to add new | get/resources/new |
-    |get the from to edit | get/movies/:id/edit |  
+    |Create |get the form to add new | get/resources/new |
+    |UPdate |get the from to edit | get/resources/:id/edit |  
     
 
 # HEROKU deployment
