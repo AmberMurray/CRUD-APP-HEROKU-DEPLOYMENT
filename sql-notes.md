@@ -30,11 +30,13 @@
 
 * * *
 
-SOME COMMANDS  
+SOME COMMANDS 
+
 |command|what it does|
 |---|---|
-|l+|list all dbs, + = more detail|
-|\c [your_db_name] |to get into db (connect to db)|
-|\d [table_name]|see specific table|
-|\dt +|list all tables in db|
+|l+ |list all dbs, + = more detail |
+|\c [your_db_name] |to get into db (connect to db) |
+|\d [table_name] |see specific table|
+|\dt + |list all tables in db|
 |\q |quit|
+
