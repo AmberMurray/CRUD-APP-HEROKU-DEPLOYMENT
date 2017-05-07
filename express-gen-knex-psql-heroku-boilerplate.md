@@ -151,11 +151,11 @@ exports.seed = function(knex) {
 # HEROKU deployment
 
 - If you haven't already:
- * add a production key to knexfile.js
-  - set connection: `process.env.DATABASE_URL`
- * everything else should be the same as development
- * set a ternary in db/knex.js
-  - `const env = process.env.NODE_ENV || 'development';`
+  * add a production key to knexfile.js
+    - set connection: `process.env.DATABASE_URL`
+  * everything else should be the same as development
+  * set a ternary in db/knex.js
+    - `const env = process.env.NODE_ENV || 'development';`
     
 - If you've done user authorization/authentication/registration:
  * add this to your server file (app.js, server.js, etc.): `app.enable('trust proxy')`
