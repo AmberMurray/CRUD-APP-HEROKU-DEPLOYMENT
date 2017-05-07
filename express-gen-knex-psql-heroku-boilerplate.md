@@ -166,15 +166,18 @@ exports.seed = function(knex) {
 - From the command line:
   * git status, git add -A, git commit, git push origin master
   * `heroku create [app name]` (you can also not name it and let Heroku give you a wacky name)
-  * `heroku addons:create heroku-postgresql`
-    - creates a postgres server on heroku (needed if you have a db to upload)
-  * `heroku apps:rename [new name]` (to rename)
+    * `heroku apps:rename [new name]` (to rename)
   * `git commit -m 'prep for deployment'`
   * `git push heroku master`
+  * `heroku addons:create heroku-postgresql`
+    - creates a postgres server on heroku (needed if you have a db to upload)
   * `heroku run bash`
     - opens up a console on heroku server for your app
       - run migrations and seed your db as you would locally
       - type exit to get out of heroku console
+  * you can also skip opening up bash and just do this:
+    - `heroku run npm run knex migrage:latest`
+    - `heroku run npm run knex seed:run`
   * `heroku config` (to check configuration)
   * `heroku open`
   * `heroku logs -t` (for finding errors)
@@ -183,6 +186,9 @@ exports.seed = function(knex) {
   * `git push heroku master`
   * `heroku run bash`
     - run migrations and seeds so changes are reflected
+    
+- NOTE: heroku, by default, looks for a favicon in your code. 
+  If you don't have one, on inspect, you may see a 404 error, which you can ignore.    
 
 # GOOD LUCK - HAPPY CODING!
 
