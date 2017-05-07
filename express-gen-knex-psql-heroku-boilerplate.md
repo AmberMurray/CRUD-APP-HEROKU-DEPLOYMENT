@@ -15,6 +15,7 @@
 - `npm install` (installs boilerplate dependencies)
 - `git init` (establish your repo... make sure to do it on github, as well)
 - `git commit -m "initial commit"`
+- make sure node_modules/ and DS Store files are added to .gitignore (DS Store is important if it's a group project)
 - Create knexfile.js: `touch knexfile.js`
 - Set up knexfile.js config
 ```
@@ -47,10 +48,34 @@
 - `npm install --save pg knex method-override body-parser cookie-parser hbs` (this may resinstall stuff that's already there - FYI)
 - `npm install --save-dev nodemon morgan` 
 - package.json add: 
-  * dev script with nodemon
+  * dev script with nodemon `"dev": "nodemon -e js,hbs ./bin/www"` (gets nodemon to watch for changes in partials as well as js files)
   * knex script for knex
-  * start script (with or without nodemon, this step is necessary for heroku deployment) 
+  * start script (with or without nodemon, this step is necessary for heroku deployment)  
+  
+- In app.js make sure you have the following: 
+```
+var express = require('express')
+var path = require('path')
+var favicon = require('serve-favicon')
+var logger = require('morgan')
+var bodyParser = require('body-parser')
+var methodOverride = require('method-override')
+var hbs = require('hbs') (or some kind of server side templat-er)
 
+var app = express()
+
+// view engine setup
+app.set('views', path.join(__dirname, 'views'))
+app.set('view engine', 'hbs')
+
+app.use(logger('dev'))
+app.use(methodOverride('_method'))
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(express.static(path.join(__dirname, 'public')))
+
+```  
+  
 # Database
 - Create a database folder and a connection file
    `mkdir db && touch db/connection.js` (connection.js is aka: knex.js)
