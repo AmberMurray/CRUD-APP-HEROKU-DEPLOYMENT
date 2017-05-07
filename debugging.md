@@ -15,4 +15,7 @@ Things to try when it's all going wrong
 - to see what changes you've made in your repo: git diff
 - cmd + shift + f in atom will search whole project
 - see if there are multiple node servers running - and kill them
+  * to find unkilled prcocesses:  ps aux | grep node
+  * to kill a process: kill -9 PID (where PID is the process id)
+  * psql [mydatabase_name] -c ‘SELECT * FROM [table_name];
 - the bug does not mean you suck (you suck because you suck, the bug is just a code thing).. jk - you don't suck
