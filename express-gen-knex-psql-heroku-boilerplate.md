@@ -214,7 +214,7 @@ exports.seed = function(knex) {
       - run migrations and seed your db as you would locally
       - type exit to get out of heroku console
   * you can also skip opening up bash and just do this:
-    - `heroku run npm run knex migrage:latest`
+    - `heroku run npm run knex migrate:latest`
     - `heroku run npm run knex seed:run`
   * `heroku config` (to check configuration)
   * `heroku open`
